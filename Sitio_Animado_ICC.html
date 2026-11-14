@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b3b">
+  <meta name="description" content="Blog educativo sobre herramientas de comunicación y socialización en entornos virtuales del Instituto Consorcio Clavijero.">
+  <title>Herramientas de comunicación y socialización | ICC</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #173b3b;
+      --ink-deep: #102d2e;
+      --teal: #2e6a66;
+      --teal-pale: #e7f0ed;
+      --gold: #d9a83d;
+      --gold-pale: #f5edda;
+      --paper: #f4f5ef;
+      --white: #fffefa;
+      --body: #344b4a;
+      --muted: #687b77;
+      --line: #d8e0d9;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --measure: 72rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+    body { margin: 0; color: var(--body); background: var(--paper); font: 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: 3px; }
+    .wrap { width: min(var(--measure), calc(100% - 3rem)); margin-inline: auto; }
+
+    .site-header { position: relative; z-index: 2; background: var(--ink-deep); color: var(--white); }
+    .bar { min-height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .brand { display: inline-flex; align-items: center; gap: .7rem; font-size: .94rem; font-weight: 650; letter-spacing: -.02em; text-decoration: none; }
+    .brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid rgba(255,255,255,.38); border-radius: 50%; color: var(--gold); font-family: var(--serif); font-size: .83rem; }
+    nav ul { display: flex; align-items: center; gap: 1.75rem; margin: 0; padding: 0; list-style: none; }
+    nav a { color: #d9e4df; text-decoration: none; font-size: .9rem; }
+    nav a:hover { color: var(--gold); }
+
+    .hero { position: relative; overflow: hidden; padding: clamp(4rem, 9vw, 7.8rem) 0 clamp(4.5rem, 8vw, 7rem); color: var(--white); background: var(--ink); }
+    .hero::before, .hero::after { position: absolute; content: ""; pointer-events: none; }
+    .hero::before { inset: auto -9rem -17rem auto; width: 38rem; aspect-ratio: 1; border: 1px solid rgba(217,168,61,.25); border-radius: 50%; box-shadow: 0 0 0 3.5rem rgba(217,168,61,.035), 0 0 0 7rem rgba(217,168,61,.025), 0 0 0 10.5rem rgba(217,168,61,.018); }
+    .hero::after { right: 13%; top: 18%; width: .7rem; height: .7rem; background: var(--gold); border-radius: 50%; box-shadow: 4.5rem 2.2rem 0 -.12rem #9fc3b8, 8.2rem -.8rem 0 -.14rem #9fc3b8, 12.5rem 1.4rem 0 -.1rem var(--gold); }
+    .hero-inner { position: relative; z-index: 1; max-width: 56rem; }
+    .kicker { display: inline-flex; align-items: center; gap: .65rem; margin: 0 0 1.35rem; color: #d2ddcf; font-size: .9rem; }
+    .kicker::before { width: 1.8rem; height: 2px; content: ""; background: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--ink); }
+    h1 { max-width: 13ch; margin-bottom: 1.4rem; color: var(--white); font: 500 clamp(3rem, 7.5vw, 6.2rem)/.99 var(--serif); letter-spacing: -.055em; }
+    .hero-copy { max-width: 43rem; margin-bottom: 2rem; color: #d3e0dc; font-size: clamp(1.08rem, 2vw, 1.28rem); line-height: 1.55; }
+    .hero-rule { width: min(100%, 39rem); height: 1px; margin: 2rem 0 1.25rem; background: rgba(255,255,255,.2); }
+    .hero-note { margin: 0; color: #b8cac4; font-size: .92rem; }
+
+    .intro { padding: clamp(3.5rem, 7vw, 6rem) 0 1.25rem; }
+    .intro-lead { max-width: 61rem; margin: 0 auto 2.7rem; color: var(--ink); font: 500 clamp(1.42rem, 3vw, 2.08rem)/1.42 var(--serif); letter-spacing: -.025em; text-align: center; }
+    .intro-lead strong { color: var(--teal); font-weight: 600; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 58rem; margin: 0 auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .compare-item { padding: 1.35rem 2rem 1.55rem; }
+    .compare-item + .compare-item { border-left: 1px solid var(--line); }
+    .compare-item h2 { margin-bottom: .35rem; font: 600 1.22rem/1.35 var(--sans); }
+    .compare-item:first-child h2 { color: var(--teal); }
+    .compare-item:last-child h2 { color: #8a671d; }
+    .compare-item p { margin: 0; font-size: .98rem; }
+
+    .topic { padding: clamp(4rem, 7vw, 6.2rem) 0; }
+    .topic.alt { background: #eaf0e9; }
+    .topic-head { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 1.5rem; align-items: start; max-width: 58rem; margin: 0 auto 2.4rem; }
+    .topic-index { display: grid; place-items: center; width: 4rem; height: 4rem; border: 1px solid var(--gold); border-radius: 50%; color: #8a671d; font: 500 1.15rem var(--serif); }
+    .topic-head h2 { margin: 0 0 .6rem; font: 500 clamp(1.9rem, 4vw, 3.05rem)/1.08 var(--serif); letter-spacing: -.04em; }
+    .topic-head p { max-width: 48rem; margin: 0; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .card { display: flex; flex-direction: column; min-height: 100%; padding: 1.55rem 1.55rem 1.4rem; background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: .45rem; }
+    .alt .card { background: rgba(255,254,250,.82); }
+    .card-head { display: flex; align-items: center; gap: .8rem; min-height: 3.1rem; margin-bottom: 1.15rem; }
+    .card-icon { flex: 0 0 auto; display: grid; place-items: center; width: 2.65rem; height: 2.65rem; color: var(--teal); background: var(--teal-pale); border-radius: 50%; }
+    .card-icon svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .kind { margin: 0; color: var(--muted); font-size: .78rem; }
+    .card h3 { margin: 0; font: 600 1.22rem/1.25 var(--sans); letter-spacing: -.025em; }
+    .label { display: block; margin-bottom: .35rem; color: var(--teal); font-size: .75rem; font-weight: 700; letter-spacing: .035em; text-transform: uppercase; }
+    .definition { margin-bottom: 1.25rem; font-size: .96rem; line-height: 1.62; }
+    .example { margin-top: auto; padding: .9rem 0 0 1rem; border-top: 1px solid var(--line); border-left: 2px solid var(--gold); font-size: .92rem; line-height: 1.58; }
+    .example .label { color: #8a671d; }
+
+    .author { padding: 3.5rem 0 2.4rem; }
+    .author-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding: 1.45rem 1.75rem; color: var(--white); background: var(--ink); border-radius: .45rem; }
+    .author h2 { margin: 0 0 .3rem; color: #c8d9d2; font: 600 .9rem var(--sans); }
+    .author p { margin: 0; font: 500 clamp(1.15rem, 2.5vw, 1.5rem)/1.3 var(--serif); }
+    .author-mark { display: grid; place-items: center; flex: 0 0 auto; width: 2.8rem; height: 2.8rem; border: 1px solid rgba(217,168,61,.6); border-radius: 50%; color: var(--gold); font-family: var(--serif); }
+
+    .references { padding: 1.6rem 0 4.5rem; }
+    .references h2 { margin-bottom: 1rem; font: 500 1.8rem var(--serif); }
+    .reference-list { max-width: 60rem; padding-left: 1.25rem; }
+    .reference-list li { margin-bottom: .75rem; padding-left: .35rem; }
+    .reference-list em { color: var(--ink); }
+    footer { padding: 1.5rem 0; color: #cedbd5; background: var(--ink-deep); font-size: .87rem; }
+    .footer-inner { display: flex; justify-content: flex-end; gap: .75rem 2rem; flex-wrap: wrap; }
+    footer p { margin: 0; }
+
+    @media (max-width: 850px) {
+      .wrap { width: min(var(--measure), calc(100% - 2rem)); }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero::after { right: 15%; top: 13%; }
+      .topic-head { grid-template-columns: 3.5rem minmax(0, 1fr); gap: 1rem; }
+      .topic-index { width: 3.2rem; height: 3.2rem; }
+    }
+    @media (max-width: 600px) {
+      .bar { min-height: 4rem; }
+      .brand { font-size: .85rem; }
+      nav ul { gap: .9rem; }
+      nav a { font-size: .78rem; }
+      .hero { padding: 4rem 0 4.5rem; }
+      .hero::before { right: -21rem; bottom: -19rem; }
+      .hero::after { right: 12%; top: 9%; }
+      h1 { max-width: 11ch; font-size: clamp(2.8rem, 14vw, 4.2rem); }
+      .intro { padding-top: 3rem; }
+      .intro-lead { text-align: left; }
+      .compare { grid-template-columns: 1fr; }
+      .compare-item { padding: 1.1rem .25rem 1.2rem; }
+      .compare-item + .compare-item { border-top: 1px solid var(--line); border-left: 0; }
+      .topic { padding: 3.5rem 0; }
+      .topic-head { grid-template-columns: 2.8rem minmax(0, 1fr); gap: .8rem; margin-bottom: 1.7rem; }
+      .topic-index { width: 2.65rem; height: 2.65rem; font-size: 1rem; }
+      .grid { grid-template-columns: 1fr; gap: .8rem; }
+      .card { padding: 1.3rem; }
+      .author-inner { padding: 1.25rem; }
+      footer p + p { margin-top: .35rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-inner wrap">
+        <p class="kicker">Blog educativo · Entornos virtuales</p>
+        <h1 id="page-title">Herramientas de Comunicación y Socialización</h1>
+        <p class="hero-copy">Un espacio para aprender a comunicarnos con claridad y construir comunidad en los estudios en línea.</p>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <p class="hero-note">Instituto Consorcio Clavijero · Actividad 4</p>
+      </div>
+    </section>
+
+    <section class="intro wrap" aria-label="Diferencia entre comunicación y socialización">
+      <p class="intro-lead">En la educación en línea conviene distinguir la <strong>comunicación</strong>, que comparte información, acuerdos e instrucciones, de la <strong>socialización</strong>, que construye comunidad y pertenencia digital.</p>
+      <div class="compare">
+        <article class="compare-item"><h2>Comunicación</h2><p>Intercambio de información con un propósito concreto.</p></article>
+        <article class="compare-item"><h2>Socialización</h2><p>Interacción que fortalece la comunidad y la identidad compartida.</p></article>
+      </div>
+    </section>
+
+    <section class="topic" id="comunicacion" aria-labelledby="communication-title">
+      <div class="wrap">
+        <header class="topic-head">
+          <span class="topic-index" aria-hidden="true">01</span>
+          <div><h2 id="communication-title">Herramientas de comunicación</h2><p>Canales para intercambiar información, coordinar actividades y recibir retroalimentación, de forma sincrónica o asincrónica.</p></div>
+        </header>
+        <div class="grid">
+          <article class="card">
+            <div class="card-head"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><div><p class="kind">Asincrónico</p><h3>Correo electrónico</h3></div></div>
+            <span class="label">Definición</span><p class="definition">Medio formal para enviar mensajes estructurados, archivos adjuntos y comunicados oficiales. Cada persona responde en el momento que le resulte conveniente.</p>
+            <p class="example"><span class="label">Ejemplo en el ICC</span>Enviar una actividad al docente, pedir una aclaración sobre la calificación o contactar a Control Escolar desde la cuenta institucional.</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2v-5.3A7.5 7.5 0 1 1 20.5 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><div><p class="kind">Síncrona y ágil</p><h3>Mensajería instantánea</h3></div></div>
+            <span class="label">Definición</span><p class="definition">Canal de conversación rápida que facilita el diálogo inmediato, la resolución de dudas operativas y la coordinación de tareas.</p>
+            <p class="example"><span class="label">Ejemplo en el ICC</span>Organizar un grupo de estudio para resolver dudas y repartir las tareas de un proyecto colaborativo.</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="m15.5 10 6-3v10l-6-3z"/></svg></span><div><p class="kind">Sincrónicas</p><h3>Videollamadas</h3></div></div>
+            <span class="label">Definición</span><p class="definition">Conversación en tiempo real con audio y video. Permite explicar ideas, compartir dudas y conversar cara a cara a distancia.</p>
+            <p class="example"><span class="label">Ejemplo en el ICC</span>Asistir a una tutoría en vivo para revisar un tema y resolver dudas con el facilitador.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic alt" id="socializacion" aria-labelledby="socialization-title">
+      <div class="wrap">
+        <header class="topic-head">
+          <span class="topic-index" aria-hidden="true">02</span>
+          <div><h2 id="socialization-title">Herramientas de socialización</h2><p>Espacios para compartir intereses, dialogar y desarrollar vínculos dentro de una comunidad de aprendizaje.</p></div>
+        </header>
+        <div class="grid">
+          <article class="card">
+            <div class="card-head"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="5" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.5-4.4M8.2 13.2l7.5 4.4"/></svg></span><div><p class="kind">Comunidad</p><h3>Redes sociales</h3></div></div>
+            <span class="label">Definición</span><p class="definition">Plataformas digitales para crear vínculos, compartir recursos de interés y conversar sobre temas comunes.</p>
+            <p class="example"><span class="label">Ejemplo en el ICC</span>Participar en grupos académicos para debatir temas de actualidad y compartir recursos con otras personas de la licenciatura.</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6z"/><path d="M14 3.5v5h4M9 12h6M9 15.5h6"/></svg></span><div><p class="kind">Reflexión</p><h3>Blogs</h3></div></div>
+            <span class="label">Definición</span><p class="definition">Sitios donde se publican entradas ordenadas por fecha. Quienes los leen pueden responder mediante comentarios y aportaciones.</p>
+            <p class="example"><span class="label">Ejemplo en el ICC</span>Publicar reflexiones y síntesis de lecturas para llevar una bitácora de aprendizaje en una asignatura virtual.</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0M4 4h2M18 4h2M12 2v2"/></svg></span><div><p class="kind">Identidad y trayectoria</p><h3>Páginas personales</h3></div></div>
+            <span class="label">Definición</span><p class="definition">Espacios individuales para presentar intereses, trayectoria académica, proyectos y trabajos realizados.</p>
+            <p class="example"><span class="label">Ejemplo en el ICC</span>Crear un portafolio con proyectos integradores, certificados y trabajos destacados para mostrar el avance académico.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="author wrap" id="autor" aria-labelledby="author-title">
+      <div class="author-inner"><div><h2 id="author-title">Sobre el autor</h2><p>GRECIA ELIZABETH ACOSTA HERNANDEZ</p></div><span class="author-mark" aria-hidden="true">ICC</span></div>
+    </section>
+
+    <section class="references wrap" aria-labelledby="references-title">
+      <h2 id="references-title">Referencias</h2>
+      <ol class="reference-list">
+        <li>Castells, M. (2009). <em>Comunicación y poder</em>. Alianza Editorial.</li>
+        <li>Instituto Consorcio Clavijero. (2026). <em>Herramientas de comunicación y socialización en la educación virtual</em>. Licenciaturas ICC.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner wrap"><p>Instituto Consorcio Clavijero · 2026</p></div></footer>
+</body>
+</html>
